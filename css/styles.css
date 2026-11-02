@@ -1,0 +1,889 @@
+/* Host */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+
+/* Tokens */
+
+.cc {
+  --ink: #1e1e1e;
+  --ink-strong: #111111;
+  --bg: #ffffff;
+  --white: #ffffff;
+  --blue: #1f00ff;
+  --lime: #ceff03;
+  --red: #e30303;
+  --rule: #e0e0e0;
+  --muted: #5a5f66;
+  --highlight: rgba(206, 255, 3, 0.26);
+  --dark: #111111;
+  --font-body: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-cta: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-footer: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --column: 950px;
+  --measure: 816px;
+}
+
+
+/* Reset */
+
+.cc,
+.cc *,
+.cc *::before,
+.cc *::after {
+  box-sizing: border-box;
+  border: 0 solid currentColor;
+}
+
+.cc {
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+.cc h1,
+.cc h2,
+.cc h3,
+.cc h4,
+.cc h5,
+.cc h6,
+.cc p,
+.cc ul,
+.cc ol,
+.cc figure,
+.cc blockquote,
+.cc hr {
+  margin: 0;
+  padding: 0;
+}
+
+.cc h1,
+.cc h2,
+.cc h3,
+.cc h4,
+.cc h5,
+.cc h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.cc ul,
+.cc ol {
+  list-style: none;
+}
+
+.cc a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.cc img,
+.cc svg,
+.cc video,
+.cc canvas,
+.cc picture {
+  display: block;
+  vertical-align: middle;
+}
+
+.cc button,
+.cc input,
+.cc select,
+.cc textarea {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+.cc button {
+  cursor: pointer;
+}
+
+
+/* Base */
+
+.cc {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+.cc img {
+  max-width: 100%;
+  height: auto;
+}
+
+.cc p {
+  font-size: 16px;
+  line-height: 27.5px;
+}
+
+.cc strong {
+  font-weight: 700;
+  color: var(--ink-strong);
+}
+
+.cc mark {
+  padding: 0 3px;
+  background: var(--highlight);
+  color: var(--ink-strong);
+  font-weight: 700;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.cc a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.cc .dark a:focus-visible {
+  outline-color: var(--white);
+}
+
+@media (min-width: 768px) {
+  .cc p {
+    font-size: 20px;
+    line-height: 34.4px;
+  }
+}
+
+
+/* Layout */
+
+.cc .container {
+  width: 100%;
+  max-width: calc(var(--column) + 48px);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.cc .band {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cc .bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.cc .bg ~ .container {
+  position: relative;
+  z-index: 1;
+}
+
+.cc .turn {
+  padding-top: 25px;
+}
+
+.cc .turn .container > * + * {
+  margin-top: 25px;
+}
+
+.cc .turn p {
+  max-width: var(--measure);
+}
+
+.cc .turn img {
+  width: 100%;
+}
+
+.cc .turn--end {
+  padding-bottom: 53px;
+}
+
+.cc .dark {
+  background: var(--dark) url("../assets/texture.jpg") repeat left top / 1080px 1080px;
+  color: var(--white);
+}
+
+/* Centred stack */
+.cc .masthead .container,
+.cc .footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+
+/* Components */
+
+.cc .skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.cc .skip-link:focus {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 50;
+  width: auto;
+  height: auto;
+  padding: 10px 16px;
+  clip: auto;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* Caps label */
+.cc .topbar p {
+  font-weight: 800;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.cc .speaker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 6.5px 16px 6.59px 12px;
+  border: 1px solid var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 22.1px;
+  letter-spacing: 1.04px;
+  text-transform: uppercase;
+  color: var(--ink-strong);
+}
+
+.cc .speaker::before {
+  content: "";
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.cc .speaker--robert {
+  border-color: #2e59f1;
+  background: rgba(90, 95, 102, 0.27);
+  color: var(--ink);
+}
+
+.cc .speaker--robert::before {
+  background: var(--blue);
+}
+
+.cc .speaker--garrett {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.cc .speaker--chris {
+  background: rgba(30, 30, 30, 0.49);
+  color: var(--white);
+}
+
+.cc .speaker--chris::before {
+  background: var(--lime);
+  box-shadow: 0 0 0 1px var(--ink-strong);
+}
+
+/* CTA button */
+.cc .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 10px;
+  border-radius: 10px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: var(--font-cta);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 26px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cc .button:hover {
+  background: #1800cc;
+}
+
+/* ExtraBold run */
+.cc .heavy {
+  font-weight: 800;
+}
+
+/* Animated chart */
+.cc .chart {
+  background: #000;
+}
+
+/* Full-width divider */
+.cc .divider {
+  height: 1px;
+  background: var(--rule);
+}
+
+@media (min-width: 768px) {
+  .cc .button {
+    padding: 18px 10px;
+    font-size: 40px;
+    line-height: 44px;
+  }
+}
+
+.cc .rule {
+  height: 1px;
+  border: 0;
+  background: var(--rule);
+}
+
+.cc .rule--short {
+  width: 56px;
+}
+
+/* Quote bar */
+.cc .quote {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 110px;
+  padding: 4px 56px 5.25px 24px;
+  border-left: 3px solid var(--blue);
+  background: rgba(188, 190, 192, 0.28);
+}
+
+.cc .quote .text {
+  max-width: 731px;
+}
+
+.cc .quote p {
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: 700;
+  color: var(--ink-strong);
+}
+
+.cc .quote cite {
+  display: block;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px;
+  color: var(--blue);
+}
+
+.cc .quote img {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  max-width: 39px;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.cc .quote--testimonial {
+  padding-top: 36px;
+  padding-bottom: 36px;
+}
+
+.cc .quote--testimonial cite {
+  margin-top: 26px;
+}
+
+@media (min-width: 768px) {
+  .cc .quote {
+    max-width: 939px;
+    padding: 4px 36px 5.25px 90px;
+  }
+
+  .cc .quote p {
+    font-size: 32px;
+    line-height: 35.5px;
+  }
+
+  .cc .quote cite {
+    font-size: 20px;
+    line-height: 35.5px;
+  }
+
+  .cc .quote img {
+    right: 36px;
+    max-width: 78px;
+  }
+
+  .cc .quote--testimonial cite {
+    margin-top: 33.25px;
+  }
+}
+
+
+/* Sections */
+
+/* BUILD:SECTIONS:START */
+
+/* Top bar · node 4:5093 */
+.cc .topbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: var(--blue);
+  color: var(--white);
+  text-align: center;
+}
+
+.cc .topbar .dot {
+  flex: 0 0 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--lime);
+}
+
+.cc .topbar p {
+  font-size: 10px;
+  letter-spacing: 2.2px;
+}
+
+@media (min-width: 768px) {
+  .cc .topbar p {
+    font-size: 11px;
+  }
+}
+
+/* The Debt Machine's Private Payroll · node 93:15441 */
+.cc .masthead {
+  padding: 34px 0 48px;
+  border-bottom: 2px solid var(--blue);
+}
+
+.cc .masthead .container {
+  gap: 24px;
+}
+
+.cc .masthead p {
+  max-width: 969px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.cc .masthead .lede {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.cc .masthead .lede em {
+  font-weight: 800;
+}
+
+.cc .masthead h1 {
+  max-width: 969px;
+  line-height: 0;
+}
+
+.cc .masthead h1 img {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .cc .masthead {
+    padding: 34px 0 72px;
+  }
+
+  .cc .masthead p {
+    font-size: 20px;
+    line-height: 31.54px;
+  }
+
+  .cc .masthead .lede {
+    font-size: 24px;
+    line-height: normal;
+  }
+}
+
+/* Robert · Treasury Signal · node 4:5121 */
+.cc .robert-treasury-signal .tear-quotes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.cc .robert-treasury-signal .tear-quotes img {
+  max-width: 360px;
+}
+
+@media (min-width: 768px) {
+  .cc .robert-treasury-signal .tear-quotes {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .cc .robert-treasury-signal .tear-quotes img {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+  }
+}
+
+/* Robert · The Other Side · node 4:5813 */
+.cc .robert-other-side img {
+  max-width: 816px;
+}
+
+/* Robert · One Dollar · node 4:5617 */
+.cc .robert-one-dollar {
+  overflow-x: hidden;
+}
+
+.cc .robert-one-dollar .banner {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  overflow: hidden;
+  background: var(--dark);
+}
+
+.cc .robert-one-dollar .banner img {
+  max-width: 2142px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .cc .robert-one-dollar .banner {
+    height: 597px;
+  }
+
+  .cc .robert-one-dollar .banner img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+/* Garrett · The Proof · node 4:5701 */
+@media (min-width: 768px) {
+  .cc .garrett-proof {
+    padding-bottom: 105px;
+  }
+}
+
+/* Chris · A Thousand Dollars · node 4:7321 */
+.cc .chris-thousand-dollars {
+  padding-bottom: 65px;
+}
+
+/* Here’s What You Get · node 130:43 */
+.cc .what-you-get {
+  padding: 48px 0;
+}
+
+.cc .what-you-get .panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  padding: 40px 16px;
+  border: 1px solid var(--white);
+  border-radius: 23px;
+  background: rgba(17, 17, 17, 0.2);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.cc .what-you-get .intro,
+.cc .what-you-get .item {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  width: 100%;
+  max-width: 887px;
+}
+
+.cc .what-you-get .intro {
+  max-width: 964px;
+}
+
+.cc .what-you-get .item {
+  gap: 27.5px;
+}
+
+.cc .what-you-get .intro .item {
+  max-width: none;
+}
+
+.cc .what-you-get .item--tail {
+  padding-bottom: 27.5px;
+}
+
+.cc .what-you-get .rule {
+  width: 100%;
+  max-width: 950px;
+  height: 2px;
+  background: #e4e7ec;
+}
+
+.cc .what-you-get strong {
+  color: inherit;
+}
+
+.cc .what-you-get .title {
+  font-size: 24px;
+  line-height: 27.5px;
+}
+
+.cc .what-you-get .title--italic {
+  font-style: italic;
+}
+
+.cc .what-you-get ul {
+  padding-left: 30px;
+  list-style: disc;
+}
+
+.cc .what-you-get li {
+  font-size: 16px;
+  line-height: 27.5px;
+}
+
+.cc .what-you-get img {
+  width: 100%;
+  max-width: 985px;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .cc .what-you-get {
+    padding: 84px 0;
+  }
+
+  .cc .what-you-get .container {
+    max-width: 1170px;
+  }
+
+  .cc .what-you-get .panel {
+    padding: 113px 76px 38px 61px;
+  }
+
+  .cc .what-you-get .item {
+    gap: 34.4px;
+  }
+
+  .cc .what-you-get .item--tail {
+    padding-bottom: 34.4px;
+  }
+
+  .cc .what-you-get .title {
+    font-size: 32px;
+    line-height: 34.4px;
+  }
+
+  .cc .what-you-get li {
+    font-size: 20px;
+    line-height: 34.4px;
+  }
+}
+
+/* Annual Members · node 91:15280 */
+@media (min-width: 768px) {
+  .cc .annual-members p {
+    max-width: 948px;
+  }
+}
+
+/* Offer · node 55:1433 */
+.cc .offer {
+  padding-top: 25px;
+  overflow-x: clip;
+}
+
+.cc .offer .container > p {
+  margin-top: 25px;
+}
+
+.cc .offer img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.cc .offer .button + p {
+  margin-top: 28px;
+}
+
+@media (min-width: 768px) {
+  .cc .offer img {
+    width: calc(100% + 84px);
+    max-width: 1034px;
+    margin: 0 -42px;
+  }
+
+  .cc .offer p {
+    max-width: 948px;
+  }
+}
+
+/* Before You Decide · node 91:14953 */
+.cc .faq {
+  padding-top: 25px;
+}
+
+.cc .faq .container > * + * {
+  margin-top: 25px;
+}
+
+.cc .faq p {
+  max-width: var(--measure);
+}
+
+.cc .faq .lead {
+  font-weight: 700;
+  font-style: italic;
+}
+
+.cc .faq .container > .card {
+  margin-top: 20px;
+}
+
+.cc .faq .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: var(--measure);
+  padding: 16px 12px 24px;
+  border-radius: 11px;
+  background: rgba(47, 47, 47, 0.1);
+}
+
+.cc .faq h3 {
+  width: 100%;
+  max-width: 675px;
+  padding: 7px 16px 6px;
+  background: var(--white);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.cc .faq .answer {
+  width: 100%;
+  max-width: 643px;
+  padding-left: 16px;
+  border-left: 2px solid #2e59f1;
+}
+
+.cc .faq .answer p {
+  font-size: 16px;
+  line-height: 30px;
+  color: #000;
+}
+
+.cc .faq .answer strong {
+  color: inherit;
+}
+
+@media (min-width: 768px) {
+  .cc .faq .card {
+    padding: 16px 20px 37px 11px;
+  }
+
+  .cc .faq h3 {
+    padding: 7px 84px 6px 10px;
+    font-size: 20px;
+    line-height: 34.4px;
+  }
+
+  .cc .faq .answer {
+    padding-left: 30px;
+  }
+
+  .cc .faq .answer p {
+    line-height: 44px;
+  }
+}
+
+/* Footer · node 93:15426 */
+.cc .footer {
+  padding: 40px 0 30px;
+  background: var(--dark);
+  color: #9fb0c4;
+  font-family: var(--font-footer);
+  font-size: 13px;
+}
+
+.cc .footer .container {
+  gap: 12px;
+}
+
+.cc .footer p {
+  font-size: inherit;
+  line-height: 22.1px;
+}
+
+.cc .footer .links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 12px;
+  padding: 3px 0;
+  line-height: 16px;
+}
+
+.cc .footer a {
+  transition: color 0.2s;
+}
+
+.cc .footer a:hover,
+.cc .footer a:focus-visible {
+  color: var(--white);
+}
+
+.cc .footer a:focus-visible {
+  outline-color: var(--white);
+}
+
+.cc .footer .links span {
+  color: #4a5c73;
+}
+
+/* BUILD:SECTIONS:END */
+
+
+/* Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  .cc *,
+  .cc *::before,
+  .cc *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

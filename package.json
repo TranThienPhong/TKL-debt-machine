@@ -1,0 +1,14 @@
+{
+  "name": "tkl-debt-machine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TKL Debt Machine landing page, built from Figma file GaOhwkLFNAEjyCIHInp0Tk",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "LIVE_RELOAD=1 node server.js"
+  }
+}
